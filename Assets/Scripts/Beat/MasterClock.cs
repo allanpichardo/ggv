@@ -7,7 +7,7 @@ using System.Configuration;
 public class MasterClock : MonoBehaviour {
 
 	private Timer masterTimer;
-	private HashSet<BeatListener> listeners;
+	private HashSet<BeatListener> listeners = new HashSet<BeatListener> ();
 
 	private int lastBpm = 60;
 	private bool lastEnabled = false;
@@ -17,7 +17,6 @@ public class MasterClock : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		listeners = new HashSet<BeatListener> ();
 		masterTimer = new Timer(BeatUtils.BpmToMilliseconds(bpm));
 		masterTimer.Enabled = isEnabled;
 		masterTimer.Elapsed += OnTimedEvent;
@@ -57,5 +56,9 @@ public class MasterClock : MonoBehaviour {
 
 	public interface BeatListener {
 		void OnBeat (int bpm);
+	}
+
+	public void OnDestroy(){
+		masterTimer.Stop ();
 	}
 }
