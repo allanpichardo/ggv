@@ -28,3 +28,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+**/.consulo
+**/.DS_Store
+.DS_Store
