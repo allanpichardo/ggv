@@ -25,11 +25,11 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag ("Vibe")) {
-			other.gameObject.SetActive (false);
-			count = count + 1;
-			SetCountText ();
-		}
+//		if (other.gameObject.CompareTag ("Vibe")) {
+//			other.gameObject.SetActive (false);
+//			count = count + 1;
+//			SetCountText ();
+//		}
 	}
 
 	void SetCountText () {
