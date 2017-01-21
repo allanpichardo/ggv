@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Vibe : MonoBehaviour {
 
+	public float speed;
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+		Vector3 movement = new Vector3 (0.0f, 0.0f, 1);
+		transform.Translate (movement * Time.deltaTime);
 	}
 }
