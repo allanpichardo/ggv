@@ -10,14 +10,18 @@ public class BpmDisplay : MonoBehaviour, MasterClock.BeatListener {
 
 	private bool isColorChange = false;
 
-	// Use this for initialization
-	void Start () {
+	void Awake() {
 		MasterClock clock = GameObject.FindObjectOfType<MasterClock> ();
 		if (clock != null) {
 			clock.AddListener (this);
 		}
-			
-		bpmText = gameObject.GetComponent<Text> ();
+
+		bpmText = GetComponent<Text> ();
+	}
+
+	// Use this for initialization
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame
