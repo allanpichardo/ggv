@@ -32,3 +32,6 @@ sysinfo.txt
 **/.consulo
 **/.DS_Store
 .DS_Store
+
+.meta
+**/*.meta
