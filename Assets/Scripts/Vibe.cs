@@ -11,7 +11,7 @@ public class Vibe : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		Vector3 movement = new Vector3 (0.0f, 0.0f, 1);
+		Vector3 movement = new Vector3 (0.0f, 0.0f, -1);
 		transform.Translate (movement * Time.deltaTime);
 	}
 }
