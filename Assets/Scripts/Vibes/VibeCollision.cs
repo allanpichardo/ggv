@@ -14,21 +14,21 @@ public class VibeCollision : MonoBehaviour {
 
         switch (othersTag){
             case "Player":
-                Debug.Log("Enter!");
+                //Debug.Log("Enter!");
                 audioSource.Play();
                 break;
             case "VibeSink":
-                Debug.Log("Miss!");
+                //Debug.Log("Miss!");
                 Destroy(this.gameObject);
                 break;
         }
     }
 
     void OnTriggerStay(Collider other) {
-            Debug.Log("Stay!");
+//            Debug.Log("Stay!");
     }
 
     void OnTriggerExit(Collider other) {
-            Debug.Log("Exit!");
+//            Debug.Log("Exit!");
     }
 }
