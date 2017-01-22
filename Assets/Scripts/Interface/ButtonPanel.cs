@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class ButtonPanel : MonoBehaviour, MasterClock.BeatListener {
 
+	private ButtonImage.Button[] pattern = { ButtonImage.Button.Y, ButtonImage.Button.B, ButtonImage.Button.A,
+		ButtonImage.Button.A, ButtonImage.Button.B, ButtonImage.Button.X, ButtonImage.Button.B, ButtonImage.Button.A,
+		ButtonImage.Button.A, ButtonImage.Button.B};
+
 	public int steps = 8;
 	public Transform buttonPrefab;
 
 	private Transform[] buttons;
-	private int currentStep = 0;
+	private int currentStep;
 
 	void Awake() {
 		MasterClock clock = GameObject.FindObjectOfType<MasterClock> ();
@@ -22,7 +26,7 @@ public class ButtonPanel : MonoBehaviour, MasterClock.BeatListener {
 		Vector3 panelPosition = transform.position;
 		float emptySpace = GetAvailableEmptySpace ();
 		float buttonWidth = ((RectTransform)buttonPrefab.transform).rect.width;
-		float x = emptySpace + step * (emptySpace + buttonWidth);
+		float x = (emptySpace + (step * (emptySpace + buttonWidth))) + (buttonWidth);
 
 		return new Vector3 (x, panelPosition.y, 0);
 	}
@@ -36,10 +40,13 @@ public class ButtonPanel : MonoBehaviour, MasterClock.BeatListener {
 
 	// Use this for initialization
 	void Start () {
+		currentStep = steps;
 		buttons = new Transform[steps];
 		for (int i = 0; i < steps; ++i) {
 			buttons [i] = Instantiate (buttonPrefab, GetPositionAtStep (i), Quaternion.identity);
-			GetButtonImage (i).SetButton (ButtonImage.Button.A);
+			ButtonImage buttonImage = GetButtonImage (i);
+			buttonImage.transform.SetParent (transform);
+			buttonImage.SetButton (pattern[i]);
 		}
 	}
 	
@@ -59,7 +66,7 @@ public class ButtonPanel : MonoBehaviour, MasterClock.BeatListener {
 		GetButtonImage (onStep).SetHighlight (true);
 		GetButtonImage (offStep).SetHighlight (false);
 
-		currentStep = (currentStep + 1) % steps;
+		currentStep = ((currentStep + 1) % steps) + steps;
 	}
 
 }

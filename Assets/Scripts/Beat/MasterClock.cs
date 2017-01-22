@@ -55,7 +55,6 @@ public class MasterClock : MonoBehaviour {
 	}
 
 	private void dispatchBeatEvent(){
-		Debug.Log("BEAT!");
 		foreach(BeatListener listener in listeners) {
 			listener.OnBeat (bpm);
 		}
