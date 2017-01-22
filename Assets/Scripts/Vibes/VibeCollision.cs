@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class VibeCollision : MonoBehaviour {
-
 
     AudioSource audioSource;
 
@@ -14,25 +12,29 @@ public class VibeCollision : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Player")) {
-            Debug.Log("Enter!");
-            audioSource.Play();
+        string othersTag = other.gameObject.tag;
+
+        switch (othersTag){
+            case "Player":
+                Debug.Log("Enter!");
+                audioSource.Play();
+                break;
+            case "VibeSink":
+                Debug.Log("Miss!");
+                Destroy(this.gameObject);
+                break;
         }
     }
 
     void OnTriggerStay(Collider other) {
-        if (other.gameObject.CompareTag("Player")) {
             Debug.Log("Stay!");
-        }
     }
 
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.CompareTag("Player")) {
             Debug.Log("Exit!");
-        }
     }
 }
