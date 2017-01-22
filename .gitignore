@@ -33,7 +33,3 @@ sysinfo.txt
 **/.DS_Store
 .DS_Store
 
-.meta
-**/*.meta
-
-ProjectSettings/*
