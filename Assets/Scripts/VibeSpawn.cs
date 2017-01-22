@@ -30,15 +30,52 @@ public class VibeSpawn : MonoBehaviour, MasterClock.BeatListener {
 		Instantiate (x, y.position, z.rotation);
 	}
 
-	public void OnBeat (int bpm) {
-		if (counter % 4 == 0) {
-			Spawn (Vibe1, row1, row1);
-		} else if (counter % 6 == 0) {
-			Spawn (Vibe4, row4, row4);
-		} else if (counter % 6 == 0 && counter % 4 == 0) {
-			Spawn (Vibe3, row3, row3);
-		}
+	void counterCallback (){
 		counter += 1;
+		if (counter == 1000) {
+			counter = 0;
+		}
+	}
+
+	Transform randomCoordinates () {
+		Transform row = row1;
+		var coordinates = Random.Range (1, 6);
+		if (coordinates == 1) {
+			row = row1;
+		} else if (coordinates == 2) {
+			row = row2;
+		} else if (coordinates == 3) {
+			row = row3;
+		} else if (coordinates == 4) {
+			row = row4;
+		} else if (coordinates == 5) {
+			row = row5;
+		}
+		return row;
+	}
+
+	Rigidbody randomVibes () {
+		Rigidbody vibe = Vibe1;
+		var wave = Random.Range (1, 7);
+		if (wave == 1) {
+			vibe = Vibe1;
+		} else if (wave == 2) {
+			vibe = Vibe2;
+		} else if (wave == 3) {
+			vibe = Vibe3;
+		} else if (wave == 4) {
+			vibe = Vibe4;
+		} else if (wave == 5) {
+			vibe = Vibe5;
+		} else if (wave == 6) {
+			vibe = Vibe6;
+		}
+		return vibe;
+	}
+
+	public void OnBeat (int bpm) {
+		Spawn (randomVibes(),randomCoordinates(),randomCoordinates());
+		counterCallback ();
 	}
 		
 }
